@@ -1,0 +1,33 @@
+<!--
+  Generated template for the ServiceOrderCompletePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Order Complete</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="auth-content">
+  <form  *ngIf="!showAmount" class="auth-form" [formGroup]="completeForm" (ngSubmit)="enterReceiptCode()">
+    <ion-item>
+      <ion-label stacked>Receipt Code</ion-label>
+      <ion-input type="tel" formControlName="receipt_code"></ion-input>
+    </ion-item>
+    <button ion-button block class="auth-action-button" type="submit" [disabled]="!completeForm.valid">Process Payment</button>
+  </form>
+  <ion-row *ngIf="showAmount">
+    <ion-col>
+      <ion-item>
+        <ion-label stacked>Total Cost</ion-label>
+        <ion-input type="tel" [(ngModel)]="totalCost"></ion-input>
+      </ion-item>
+      <button ion-button block class="auth-action-button" (click)="enterTotalCost()">Submit</button>
+    </ion-col>
+  </ion-row>
+</ion-content>

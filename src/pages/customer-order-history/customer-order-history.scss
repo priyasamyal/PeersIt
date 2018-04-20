@@ -1,0 +1,202 @@
+.md, .ios{
+	
+
+page-customer-order-history {
+	.ion-item.schedule-item.item.item-block.item-md {
+    background-color: #fff;
+    box-shadow: 1px 1px 1px 1px #bdbdbd !important;
+	border-radius: 4px !important;
+	margin-bottom: 30px !important;
+}
+ .schedule-list .schedule-item .schedule-data
+{
+	box-shadow: 0px !important;
+
+}
+	.services_accept_bg {
+     background-color: #fff !important;
+    box-shadow: 1px 1px 1px 1px #bdbdbd !important;
+    border-radius: 4px !important;
+    margin-bottom: 30px !important;
+}
+.schedule_shadow
+{
+	box-shadow: 0px !important;
+
+}
+
+
+	.schedule-item
+	{
+		padding: 0px !important;
+	
+	}
+	.schedule-data h2 {
+    color: #0079c1 !important;
+}
+.schedule-day
+{
+ color: #0079c1 !important;
+ font-weight: bold !important;
+}
+.schedule-month
+{
+ color: #0079c1 !important;
+  font-weight: bold !important;
+}
+
+	.current_order
+{
+text-align: center;
+border: 1px solid #0178c1;
+padding: 20px;
+border-radius: 10px;
+color: #0178c1;
+font-size: 20px;
+font-size: 15px;
+width: 90%;
+margin-left: 5%;
+}
+		.schedule-list
+		{
+			padding: 10px 5px;
+
+			.schedule-item
+			{
+				padding: 5px;
+				background-color: transparent;
+				border: none;
+
+				.item-inner
+				{
+					border: none;
+					padding: 0px;
+
+					ion-label {
+						margin: 0px;
+					}
+				}
+
+				.schedule-date
+				{
+					color: $white-d;
+					text-align: center;
+					padding: 0px 10px 0px 0px;
+					@include align-self(center);
+
+					.schedule-day
+					{
+						font-size: 3.2rem;
+						font-weight: 400;
+					}
+
+					.schedule-month
+					{
+						font-size: 1.2rem;
+						font-weight: 500;
+						text-transform: uppercase;
+					}
+
+					.schedule-time
+					{
+						font-size: 1.2rem;
+						font-weight: 500;
+					}
+					.cost-icon{
+						padding-right: 2px;
+					}
+				}
+
+				.schedule-data
+				{
+					border-radius: 6px;
+					background-color: $white;
+					padding: 12px 14px;
+					@include element-shadow();
+
+					.data-item
+					{
+						@include display(flex);
+						@include align-items(center);
+						@include justify-content(space-between);
+
+						.item-content
+						{
+							flex: 0 0 90%;
+					    max-width: 90%;
+							padding-right: 5px;
+
+							.item-title
+							{
+								font-size: 1.6rem;
+								font-weight: 500;
+								letter-spacing: 0.2px;
+								color: $theme-color-2;
+								margin-bottom: 12px;
+
+								&.one-line
+								{
+									overflow: hidden;
+									text-overflow: ellipsis;
+									white-space: nowrap;
+								}
+							}
+
+							.item-description
+							{
+								margin-bottom: 4px;
+								@include display(flex);
+								@include align-items(center);
+								@include justify-content(space-between);
+
+								&:last-child
+								{
+									margin: 0px;
+								}
+
+								.description-icon
+								{
+									color: $white-d;
+									flex: 0 0 12%;
+							    max-width: 12%;
+									padding-right: 2px;
+									font-size: 2.1rem;
+									text-align: left;
+								}
+
+								.description-text
+								{
+									flex: 0 0 88%;
+							    max-width: 88%;
+									padding-left: 2px;
+									white-space: normal;
+									font-size: 1.2rem;
+									line-height: 1.4;
+									letter-spacing: 0.2px;
+									color: $white-d;
+
+									&.one-line
+									{
+										overflow: hidden;
+									  text-overflow: ellipsis;
+									  white-space: nowrap;
+									}
+								}
+							}
+						}
+
+						.item-icon
+						{
+							flex: 0 0 10%;
+					    max-width: 10%;
+						  text-align: right;
+							color: $theme-color-2;
+							font-size: 2.2em;
+							padding-left: 5px;
+						}
+					}
+				}
+			}
+		}
+}
+}

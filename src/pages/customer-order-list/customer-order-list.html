@@ -1,0 +1,134 @@
+<!--
+Generated template for the CustomerOrderListPage page.
+
+See http://ionicframework.com/docs/components/#navigation for more info on
+Ionic pages and navigation.
+-->
+<ion-header class="auth-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+<ion-icon name="menu"></ion-icon>
+</button>
+
+    <ion-title>
+      Order List
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="schedule-content">
+  <ion-segment class="schedule-segment" [(ngModel)]="segment" (ionChange)="onSegmentChanged($event)">
+    <ion-segment-button value="today" (ionSelect)="onSegmentSelected($event)">
+      On Going
+    </ion-segment-button>
+    <ion-segment-button value="upcoming" (ionSelect)="onSegmentSelected($event)">
+      Pending
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="segment">
+    <div *ngSwitchCase="'today'">
+      <ion-list class="schedule-list" *ngIf="customerNewOrder.todayOrders.length>0">
+        <div class="swipe_right">
+          Swipe Right to Cancel
+        </div>
+        <ng-container *ngFor="let order of customerNewOrder.todayOrders">
+          <ion-item-sliding>
+
+            <ion-item class="schedule-item services_accept_bg" (click)="gotToDetail(order, 1)">
+              <ion-row>
+                <ion-col width-20 class="schedule-date">
+                  <h2 class="schedule-day">{{order.day}}</h2>
+                  <h3 class="schedule-month">{{order.monthName}}</h3>
+                  <h3 class="schedule-month">{{order.year}}</h3>
+                </ion-col>
+                <ion-col width-80 class="schedule-data schedule_shadow">
+                  <div class="data-item">
+                    <div class="item-content">
+                      <h2 class="item-title one-line" *ngFor="let items of order.subject">{{items.item}}</h2>
+                      <h2 class="item-title one-line">
+                        <ion-icon class="cost-icon" name="logo-usd"></ion-icon>{{order.customerEstCost}}</h2>
+                      <div class="item-description">
+                        <ion-icon class="description-icon" name="clock"></ion-icon>
+                        <p class="description-text">{{order.startTime}} - {{order.endTime}}</p>
+
+                      </div>
+                      <!--<div class="item-description">
+                        <ion-icon class="description-icon" name="navigate"></ion-icon>
+                        <p class="description-text one-line" *ngIf="order.pickLocation!=undefined">{{order.pickLocation}}</p>
+                      </div>-->
+                      <div class="item-description">
+                        <ion-icon class="description-icon" name="navigate"></ion-icon>
+                        <p class="description-text one-line" *ngIf="order.dropLocation!=undefined">{{order.dropLocation}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-item>
+            <ion-item-options side="right">
+              <button ion-button color="danger" (click)="OrderCancel1(order.id, order.categoryId)">
+              <ion-icon name="close"></ion-icon>
+              Cancel
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ng-container>
+      </ion-list>
+      <div class="current_order" *ngIf="customerNewOrder.todayOrders.length==0">
+        There are no current orders
+      </div>
+    </div>
+    <div *ngSwitchCase="'upcoming'">
+
+      <ion-list class="schedule-list" *ngIf="customerNewOrder.upcomingOrders.length>0">
+        <div class="swipe_right">
+          Swipe Right to Cancel
+        </div>
+        <ng-container *ngFor="let order of customerNewOrder.upcomingOrders">
+          <ion-item-sliding>
+            <ion-item class="schedule-item services_accept_bg">
+              <ion-row (click)="gotToDetail(order, 0)">
+                <ion-col width-20 class="schedule-date">
+                  <h2 class="schedule-day">{{order.day}}</h2>
+                  <h3 class="schedule-month">{{order.monthName}}</h3>
+                  <h3 class="schedule-month">{{order.year}}</h3>
+                </ion-col>
+                <ion-col width-80 class="schedule-data schedule_shadow">
+                  <div class="data-item">
+                    <div class="item-content">
+                      <h2 class="item-title one-line" *ngFor="let items of order.subject">{{items.item}}</h2>
+                      <h2 class="item-title one-line">
+                        <ion-icon class="cost-icon" name="logo-usd"></ion-icon>{{order.customerEstCost}}</h2>
+                      <div class="item-description">
+                        <ion-icon class="description-icon" name="clock"></ion-icon>
+                        <p class="description-text">{{order.startTime}} - {{order.endTime}}</p>
+                      </div>
+                      <!--<div class="item-description">
+                        <ion-icon class="description-icon" name="navigate"></ion-icon>
+                        <p class="description-text one-line" *ngIf="order.pickLocation!=undefined">{{order.pickLocation}}</p>
+                      </div>-->
+                      <div class="item-description">
+                        <ion-icon class="description-icon" name="navigate"></ion-icon>
+                        <p class="description-text one-line" *ngIf="order.dropLocation!=undefined">{{order.dropLocation}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-item>
+            <ion-item-options side="right">
+              <button ion-button color="danger" (click)="OrderCancel2(order.id)">
+            <ion-icon name="close"></ion-icon>
+            Cancel
+            </button>
+            </ion-item-options>
+
+          </ion-item-sliding>
+        </ng-container>
+      </ion-list>
+      <div class="current_order" *ngIf="customerNewOrder.upcomingOrders.length==0">
+        There are no pending orders
+      </div>
+    </div>
+  </div>
+</ion-content>

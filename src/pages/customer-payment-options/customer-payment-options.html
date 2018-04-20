@@ -1,0 +1,31 @@
+<!--
+  Generated template for the CustomerPaymentOptionsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Payment Options</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item (click)="goBankDetail()">
+      <ion-avatar item-start>
+        <img src="assets/icon/credit_card.jpg">
+      </ion-avatar>
+      <h2>Pay with card</h2>
+    </ion-item>
+     <ion-item (click)="goPayPal()">
+      <ion-avatar item-start>
+        <img src="assets/icon/paypal.png">
+      </ion-avatar>
+      <h2>Paypal</h2>
+    </ion-item>
+  </ion-list>
+</ion-content>

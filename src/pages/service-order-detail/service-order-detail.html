@@ -1,0 +1,148 @@
+<!--
+  Generated template for the ConsumerOrderListDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="auth-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>
+      Order Details
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="order-cost">
+      <ion-col col-12 style="text-align: left;">
+        <h4>Order No. {{detail.id}}</h4>
+      </ion-col>
+      <ion-col col-12 style="text-align: left;">
+        <h4>Estimated Cost: $ {{detail.customerEstCost}}</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="detail.description">
+      <ion-col class="schedule-data">
+        <div class="data-item">
+          <div class="item-content">
+            <h2 class="item-title one-line">{{detail.description}}</h2>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-8 class="schedule-data">
+        <div class="data-item">
+          <div class="item-content">
+            <h6 class="item-title one-line">Items included:</h6>
+            <h6 class="item-title one-line" *ngFor="let items of detail.subject">{{items.item}}</h6>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col col-4 class="schedule-data">
+        <div class="data-item">
+          <div class="item-content">
+            <h6 class="item-title one-line">Quantity</h6>
+            <h6 class="item-title one-line" *ngFor="let items of detail.subject">{{items.quantity}}</h6>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="showImage()">
+      <ion-card class="card_shadow">
+        <ion-card-header class="card_padding">
+          Image
+        </ion-card-header>
+        <ion-row *ngFor="let item of detail.subject">
+          <ion-col class="choose_img" *ngIf="item.image">
+            <p>{{item.item}}</p>
+            <img class="detail_img" src="{{api.imageUrl}}/{{item.image}}" />
+          </ion-col>
+
+        </ion-row>
+      </ion-card>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 style="text-align: left;">
+        <ion-icon class="description-icon" name="calendar"></ion-icon>
+        <span class="description-text">{{detail.monthName}} {{detail.day}}, {{detail.year}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 style="text-align: left;">
+        <ion-icon class="description-icon" name="clock"></ion-icon>
+        <span>{{detail.startTime}} - {{detail.endTime}}
+           </span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="order-cost" *ngIf="detail.pickLocation">
+      <ion-col col-12 style="text-align: left;">
+        <ion-icon class="description-icon" name="navigate"></ion-icon>
+        <span>&nbsp; Pick Location :&nbsp; {{detail.pickLocation}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row class="order-cost">
+      <ion-col col-12 style="text-align: left;">
+        <ion-icon class="description-icon" name="navigate"></ion-icon>
+        <span>&nbsp; Drop Location :&nbsp; {{detail.dropLocation}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+   
+  <ion-grid *ngIf="status == 1">
+    <ion-row>
+      <ion-col>
+        <button ion-button block [disabled]="detail.mobile_no == null" (click)="call()">
+         CALL
+	    </button>
+        <button ion-button block (click)="message()">
+         MESSAGE
+	    </button> 
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="showStartOrder">
+      <ion-col>
+        <button ion-button block (click)="startOrder()">
+         Start Order
+	    </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="showReceiptCode">
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Receipt Code</ion-label>
+          <ion-input type="tel" [(ngModel)]="receiptCode"></ion-input>
+        </ion-item>
+        <button ion-button block (click)="enterReceiptCode(detail.receiptCode)">
+         ENTER RECEIPT CODE
+	    </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="showAmount">
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Total Amount From Receipt Consumer Owes Supplier</ion-label>
+          <ion-input type="tel" [(ngModel)]="totalCost"></ion-input>
+        </ion-item>
+        <button ion-button block class="auth-action-button" (click)="enterTotalCost()">Submit</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="status == 0">
+    <!--<div class="map-container">
+   <google-map [options]="map_model.map_options"></google-map>
+   </div> map -->
+    <ion-row>
+      <ion-col>
+        <button ion-button block (click)="acceptOrder(detail.id)">
+         ACCEPT
+	    </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

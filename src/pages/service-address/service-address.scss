@@ -1,0 +1,87 @@
+.md,.ios{
+page-service-address {
+    .card 
+    {
+        background: #f5f5f5;
+        padding: 0 0 11px 10px !important;
+
+    }
+    .card-content .item 
+    {
+        background: none;
+        border:0px !important;
+
+    }
+    .searchbar 
+    {
+        background: none;
+        border:0px !important;
+        margin: 0px !important;
+        padding: 0px !important;
+
+    }
+    .card-header
+    {
+       padding: 7px 0 0px 0px !important;
+       font-size: 15px !important;
+
+    }
+    ion-item
+    {
+        margin: 0px !important;
+        padding: 0px !important;
+       
+    }
+    .card-content {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+    .text-input {
+    border-bottom: 1px solid #bdbdbd;
+    margin: 0px !important;
+}
+.item-block
+{
+    background: none !important;
+    border: 0px;
+
+}
+.list > .item-block
+{
+    border: 0px !important;
+}
+.fab
+{
+    background-color: #387ef5;
+    color: white;
+
+}
+textarea
+{
+    width: 100% !important;
+    font-size: 14px  !important;
+     color: black !important;
+
+}
+.label
+{
+    font-size: 14px !important;
+    color: black !important;
+
+}
+.button-outline-md-light {
+    border-color: #e8e8e8;
+    color: #e8e8e8;
+    background-color: #0079c1;
+}
+.button-outline-ios-light {
+    border-color: #e8e8e8;
+    color: #e8e8e8;
+    background-color: #0079c1 !important;
+}
+.default_padding
+{
+        padding-left: 8px;
+}
+}
+}

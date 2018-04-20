@@ -1,0 +1,28 @@
+page-customer-notifications {
+ion-note {
+   font-size: 12px;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    margin-top: 14px;
+    color: #0079c1 !important;
+
+  }
+
+.item {
+	border-bottom: 1px solid #dedede;
+ .item-inner {
+ border-bottom:none !important;
+ p {
+ color:#4d4d4d;
+ font-size:13px;
+}
+ }
+}
+.list-ios > .item-block:first-child
+{
+	border-top: 0px !important;
+
+}
+
+}

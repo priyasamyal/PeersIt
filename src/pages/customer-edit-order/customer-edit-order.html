@@ -1,0 +1,255 @@
+<!--
+  Generated template for the CustomerNewOrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="auth-header">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Edit Order
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      Pickup Location Address
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Add card content here! -->
+      <ion-list>
+        <ion-item>
+          <ion-searchbar [(ngModel)]="map_pick.search_query" tabindex="-1" (ionInput)="searchPickPlacesPredictions(map_pick.search_query)"
+            (ionClear)="clearPickSearch()"></ion-searchbar>
+        </ion-item>
+      </ion-list>
+      <ion-list [hidden]="map_pick.search_places_predictions.length == 0" class="search-options-list">
+        <!--<ion-item item-right><ion-icon name="close" (click)="hidePickAutoComplete()"></ion-icon></ion-item>  -->
+        <ion-item *ngFor="let place of map_pick.search_places_predictions" tappable (click)="selectPickSearchResult(place)">
+          {{ place.description }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <span>Drop Off Location Address</span>
+      <button ion-button icon-only clear no-padding (click)="geolocateMe()" class="geolocation-button" [ngClass]="{'using-geolocation': map_drop.using_geolocation}">
+        <ion-icon name="locate"></ion-icon>
+      </button>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Add card content here! -->
+      <ion-list>
+        <ion-item>
+          <ion-searchbar [(ngModel)]="map_drop.search_query" tabindex="-1" (ionInput)="searchDropPlacesPredictions(map_drop.search_query)"
+            (ionClear)="clearDropSearch()" on-focus="focusFunction()"></ion-searchbar>
+        </ion-item>
+      </ion-list>
+      <ion-list [hidden]="map_drop.search_places_predictions.length == 0" class="search-options-list">
+        <ion-item *ngFor="let place of map_drop.search_places_predictions" tappable (click)="selectDropSearchResult(place)">
+          {{ place.description }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngFor="let item of customerEditOrder.items; let i = index">
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-list-header class="item_list_header">
+            <button clear class="delete-icon" ion-button (click)="deleteItem(i)">
+              <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+            </button>
+          </ion-list-header>
+          <ion-item>
+            <ion-label stacked>Item</ion-label>
+            <ion-input type="text" [(ngModel)]="item.item"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Quantity</ion-label>
+            <ion-input type="tel" [(ngModel)]="item.quantity"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="item.image == ''">
+      <ion-col>
+        <button ion-button block (click)="presentActionSheet(item)">
+          Add Photo
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="item.image != ''">
+      <ion-col col-12 class="choose_img">
+        <button clear class="delete-icon" ion-button (click)="deleteImage(item)">
+          <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+        </button>
+        <img src="{{item.image}}" />
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button block (click)="addItem()">
+           ADD MORE ITEMS
+	    </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-card>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label color="primary" stacked>Any special instructions</ion-label>
+            <ion-textarea placeholder="Type description if you want.." [(ngModel)]="customerEditOrder.description"></ion-textarea>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label stacked>Price of goods(approx $)</ion-label>
+            <ion-input type="tel" value="" [(ngModel)]="customerEditOrder.estimatedgGoodsPrice"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Who will pay?</ion-label>
+            <ion-select [(ngModel)]="customerEditOrder.paymentMode" (ionChange)="setEstimatedAmount($event)" interface="popover">
+              <ion-option value="0">Supplier will pay</ion-option>
+              <ion-option value="1">Already paid</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>If order contains alcohol</ion-label>
+            <ion-checkbox color="dark" [(ngModel)]="customerEditOrder.isChecked" (ionChange)="isChecked($event)"></ion-checkbox>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="status != 1">
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Order Type</ion-label>
+            <ion-select [(ngModel)]="customerEditOrder.orderType" (ionChange)="orderTypeChange($event)" interface="popover">
+              <ion-option value="0" [disabled]="customerEditOrder.setting.onDemand">On Demand</ion-option>
+              <ion-option value="1" [disabled]="customerEditOrder.setting.resting">Resting</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="status == 1">
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Order Type</ion-label>
+            <ion-select [(ngModel)]="customerEditOrder.orderType" (ionChange)="orderTypeChange($event)" interface="popover">
+              <ion-option value="0">On Demand</ion-option>
+              <ion-option value="1">Resting</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="customerEditOrder.orderType == 1">
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label class="delivery_text">Delivery start Time</ion-label>
+            <ion-datetime displayFormat="MMM DD, YY hh:mm A" pickerFormat="MMM DD, YY hh:mm A" [min]="customerEditOrder.minStart" [max]="customerEditOrder.maxStart"
+              [(ngModel)]="customerEditOrder.startTime" (ionChange)="setEndTime()"></ion-datetime>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="customerEditOrder.orderType == 0 || customerEditOrder.orderType == 1">
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label class="delivery_text">Delivery end Time</ion-label>
+            <ion-datetime displayFormat="MMM DD, YY hh:mm A" pickerFormat="MMM DD, YY hh:mm A" [min]="customerEditOrder.minStart" [max]="customerEditOrder.maxStart"
+              [(ngModel)]="customerEditOrder.endTime"></ion-datetime>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="customerSecretCode.length > 0">
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Secret Code</ion-label>
+            <ion-select [(ngModel)]="secretCode" multiple="true">
+              <ion-option *ngFor="let code of customerSecretCode">{{code.meta_value}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-card *ngIf="status == 1">
+    <ion-row *ngIf="showCoupon">
+      <ion-col>
+        <button ion-button block (click)="addCoupon()">
+          Add Coupon
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="!showCoupon">
+      <ion-col col-12>
+        <ion-input type="text" placeholder="Write Coupon Code here.." [(ngModel)]="couponCode"></ion-input>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button block (click)="cancelCoupon()">
+          Cancel
+        </button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button block (click)="applyCoupon()">
+          Apply Coupon
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button block type="button" (click)='placeOrder()'>
+			   Complete
+	    </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="status == 1">
+    <ion-row>
+      <ion-col>
+        <button ion-button block type="button" (click)='saveOrder()'>
+			   Save Items & Order Later 
+	    </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

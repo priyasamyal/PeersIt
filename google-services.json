@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "562738748499",
+    "project_id": "neon-citizen-172609"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562738748499:android:f28f88a38d00902d",
+        "android_client_info": {
+          "package_name": "ameba.test.wanna12345"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562738748499-rma9d9u9mmjqdvvcui7ttc0ghpnev86g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ameba.test.wanna12345",
+            "certificate_hash": "51fab767f3ae8bc04dc34bf8d0791d54baee1c5e"
+          }
+        },
+        {
+          "client_id": "562738748499-k0gujsp9lb16k0ugfhorc3mtnsr9njee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZHt_4L_9JGqJd6r5EVtL0Q8V92w8VJYE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

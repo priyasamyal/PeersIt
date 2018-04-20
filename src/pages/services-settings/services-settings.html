@@ -1,0 +1,223 @@
+<!--
+  Generated template for the CustomerSettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Settings
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>On Demand Orders</ion-label>
+      <ion-toggle [(ngModel)]="userProvider.settings.service_on_demand_orders" (ionChange)="chnageSetting('demand')"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Resting Orders</ion-label>
+      <ion-toggle [(ngModel)]="userProvider.settings.service_resting_orders" (ionChange)="chnageSetting('resting')"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Push Notifications</ion-label>
+      <ion-toggle [(ngModel)]="userProvider.settings.service_push_notifications" (ionChange)="chnageSetting('push')"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Accept Live Orders Now</ion-label>
+      <ion-toggle [(ngModel)]="userProvider.settings.service_mute" (ionChange)="chnageSetting('mute')"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-list radio-group [(ngModel)]="userProvider.settings.service_order_type" (ionChange)="chnageSetting('orderType')">
+    <ion-list-header class="setting_head">
+      Send me secret code orders only
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Only to secret code providers</ion-label>
+      <ion-radio value="2"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Send me regular orders only</ion-label>
+      <ion-radio value="3"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Send me all orders</ion-label>
+      <ion-radio value="4"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header class="setting_head">
+      Delivery radius
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Radius</ion-label>
+      <ion-input type="tel" [(ngModel)]="userProvider.settings.service_delivery_raduis" (ionChange)="chnageSetting('deliveryRaduis')"
+        placeholder="Enter in miles, decimal values allowed"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list radio-group [(ngModel)]="userProvider.settings.service_provide_from" (ionChange)="chnageSetting('preferredLocation')">
+    <ion-list-header class="setting_head">
+      Provide service from delivery radius of your
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Current Location</ion-label>
+      <ion-radio value="2"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Default Location</ion-label>
+      <ion-radio value="3"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Both</ion-label>
+      <ion-radio value="4"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <ion-list radio-group [(ngModel)]="userProvider.settings.service_order_gender" (ionChange)="chnageSetting('orderGender')">
+    <ion-list-header class="setting_head">
+      Gender
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Male</ion-label>
+      <ion-radio value="1"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Female</ion-label>
+      <ion-radio value="2"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Anyone</ion-label>
+      <ion-radio value="3"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Age range</ion-label>
+      <ion-toggle [(ngModel)]="userProvider.settings.service_is_age" (ionChange)="chnageSetting('is_age')"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header class="setting_head" *ngIf="userProvider.settings.service_is_age">
+      Age range to receive orders from
+      <ion-badge item-end color="dark">{{age.lower}}</ion-badge>
+      <ion-badge item-end color="dark">{{age.upper}}</ion-badge>
+    </ion-list-header>
+    <ion-item *ngIf="userProvider.settings.service_is_age">
+      <ion-range dualKnobs="true" [(ngModel)]="age" (ionChange)="ageRangeChange($event)" min="0" max="100" step="1" pin="true"></ion-range>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Cap</ion-label>
+      <ion-toggle [(ngModel)]="userProvider.settings.service_cap" (ionChange)="chnageSetting('cap')"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="userProvider.settings.service_cap">
+      <ion-label>Cap Amount ($)</ion-label>
+      <ion-input type="tel" [(ngModel)]="userProvider.settings.service_cap_amount" (ionChange)="chnageSetting('cap_amount')"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="userProvider.settings.service_cap">
+      <ion-label>Cap Days</ion-label>
+      <ion-input type="tel" [(ngModel)]="userProvider.settings.service_cap_day" (ionChange)="chnageSetting('cap_day')"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Human Atm</ion-label>
+      <ion-toggle [(ngModel)]="userProvider.settings.service_is_atm" (ionChange)="chnageSetting('atm')"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="userProvider.settings.service_is_atm">
+      <ion-label>Minimum Amount ($)</ion-label>
+      <ion-input type="tel" [(ngModel)]="userProvider.settings.service_min_atm" (ionChange)="chnageSetting('min_atm')"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="userProvider.settings.service_is_atm">
+      <ion-label>Maximum Amount ($)</ion-label>
+      <ion-input type="tel" [(ngModel)]="userProvider.settings.service_max_atm" (ionChange)="chnageSetting('max_atm')"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header class="setting_head">
+      Time Window You Want Notifications For New Orders
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Start Accepting Orders</ion-label>
+      <ion-toggle [(ngModel)]="userProvider.settings.service_accepting_orders" (ionChange)="chnageSetting('acceptingOrders')"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="userProvider.settings.service_accepting_orders">
+      <ion-label>Start Time</ion-label>
+      <ion-datetime displayFormat="hh:mm A" pickerFormat="hh mm A" [(ngModel)]="userProvider.settings.service_order_window_start"
+        (ionChange)="chnageSetting('window_start')"></ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="userProvider.settings.service_accepting_orders">
+      <ion-label>End Time</ion-label>
+      <ion-datetime displayFormat="hh:mm A" pickerFormat="hh mm A" [(ngModel)]="userProvider.settings.service_order_window_end"
+        (ionChange)="chnageSetting('window_end')"></ion-datetime>
+    </ion-item>
+  </ion-list>
+
+  <ion-list radio-group [(ngModel)]="userProvider.settings.service_order_mode" (ionChange)="chnageSetting('messages')">
+    <ion-list-header class="setting_head">
+      Messages
+    </ion-list-header>
+    <ion-item>
+      <ion-label>SMS</ion-label>
+      <ion-radio value="2"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Push Notification</ion-label>
+      <ion-radio value="3"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Secret Code</ion-label>
+      <ion-input type="text" [(ngModel)]="secretCode"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button block (click)="saveSecretCode()">Save Secret Code</button>
+    </ion-item>
+  </ion-list>
+
+
+  <!--  <ion-list radio-group (ionChange)="orderHistory($event)">
+    <ion-list-header>
+     Order history (sort by)
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-radio  value="0"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Amount ($)</ion-label>
+      <ion-radio value="1"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Individual</ion-label>
+      <ion-radio value="2"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Earnings</ion-label>
+      <ion-radio value="3"></ion-radio>
+    </ion-item>
+
+  </ion-list>
+-->
+</ion-content>

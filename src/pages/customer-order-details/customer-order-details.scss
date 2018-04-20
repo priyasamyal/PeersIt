@@ -1,0 +1,72 @@
+
+.md, .ios{
+  
+
+page-customer-order-details {
+ion-header {
+		@include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
+	}
+ .coustomer_btn
+   {
+       background: #2196f3;
+       color: white;
+       font-size: 15px;
+      
+   } 
+
+   .services_btn
+   {
+      background: #dee0e3;
+      color: black;
+      font-size: 15px;
+
+     }
+     .logo_margin
+     {
+         margin-top:100%;
+
+     }
+     .button_margin
+     {
+         margin-top:40%;
+
+     }
+     .order-cost h4 {
+font-size: 15px !important;
+margin: 0px !important;
+padding: 0px !important;
+ font-weight: normal !important;
+
+
+}
+
+.schedule-data h2 {
+    font-size: 17px;
+    margin: 0px;
+    color: #0079c1 !important;
+     font-weight: normal !important;
+}
+.schedule-data h6 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    margin-bottom: 10px !important;
+    font-weight: normal !important;
+}
+
+.card_shadow
+{
+  box-shadow: 0 0 0 0px !important;
+border: 1px solid #eeeeee;
+padding: 9px;
+
+   
+}
+.card_padding
+{
+    padding: 0px !important;
+     color: #0079c1 !important;
+   
+}
+}
+}

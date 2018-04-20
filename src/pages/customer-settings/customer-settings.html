@@ -1,0 +1,162 @@
+<!--
+  Generated template for the CustomerSettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Settings
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Push Notifications</ion-label>
+      <ion-toggle [(ngModel)]="userProvider.settings.consumer_push_notifications" (ionChange)="chnageSetting('push')"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-list radio-group [(ngModel)]="userProvider.settings.consumer_order_type" (ionChange)="chnageSetting('orderType')">
+    <ion-list-header class="setting_head">
+      Send my orders to
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Only to secret code providers</ion-label>
+      <ion-radio value="2"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Only regular orders</ion-label>
+      <ion-radio value="3"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Anyone can fulfill the order</ion-label>
+      <ion-radio value="4"></ion-radio>
+    </ion-item>
+
+    <ion-item *ngIf="userProvider.settings.consumer_order_type == 4">
+      <ion-label>Order Release Time (mins)</ion-label>
+      <button ion-button color="danger" (click)="showInfo()">I</button>
+      <ion-input type="tel" [(ngModel)]="userProvider.settings.consumer_order_time" (ionChange)="chnageSetting('orderTime')"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="userProvider.settings.consumer_order_type == 2 || userProvider.settings.consumer_order_type == 4">
+      <button ion-button block (click)="addSecretCode()">
+           ADD  SECRET CODE
+	    </button>
+    </ion-item>
+  </ion-list>
+
+  <ion-list radio-group [(ngModel)]="userProvider.settings.consumer_preferred_orders" (ionChange)="chnageSetting('preferredOrders')">
+    <ion-list-header class="preferred_margin setting_head">
+      Preferred orders
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Only facebook friends</ion-label>
+      <ion-radio disabled="true" value="4"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Only facebook friends of friends</ion-label>
+      <ion-radio disabled="true" value="5"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Only male</ion-label>
+      <ion-radio value="1"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Only female</ion-label>
+      <ion-radio value="2"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Anyone</ion-label>
+      <ion-radio value="3"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <ion-list radio-group [(ngModel)]="userProvider.settings.consumer_contact_priority" (ionChange)="chnageSetting('contactPriority')">
+    <ion-list-header class="preferred_margin setting_head">
+      Contact priority
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Call</ion-label>
+      <ion-radio value="2"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Text</ion-label>
+      <ion-radio value="3"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <ion-list radio-group [(ngModel)]="userProvider.settings.consumer_order_mode" (ionChange)="chnageSetting('messages')">
+    <ion-list-header class="preferred_margin setting_head">
+      Messages
+    </ion-list-header>
+    <ion-item>
+      <ion-label>SMS</ion-label>
+      <ion-radio value="2"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Push Notification</ion-label>
+      <ion-radio value="3"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <!--
+  <ion-list radio-group (ionChange)="preferredLocation($event)">
+    <ion-list-header>
+      Preferred drop location(If not at home)
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Home Address</ion-label>
+      <ion-radio checked="true" value="0" ></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Office Address</ion-label>
+      <ion-radio value="1" ></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Apt door</ion-label>
+      <ion-radio value="2" ></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Other</ion-label>
+      <ion-radio value="3" ></ion-radio>
+    </ion-item>
+
+  </ion-list>-->
+
+
+  <!--  <ion-list radio-group (ionChange)="orderHistory($event)">
+    <ion-list-header>
+      Order History (sort by)
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Dates</ion-label>
+      <ion-radio checked="true" value="0" ></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Amount ($)</ion-label>
+      <ion-radio value="1" (ionChange)="orderHistory('1')"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>List of items</ion-label>
+      <ion-radio value="2" (ionChange)="orderHistory('2')"></ion-radio>
+    </ion-item>
+
+  </ion-list>-->
+
+</ion-content>

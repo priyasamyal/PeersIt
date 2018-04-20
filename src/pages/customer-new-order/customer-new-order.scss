@@ -1,0 +1,114 @@
+page-customer-new-order {
+    .item_list_header{
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+        height: 2.5rem;
+        border: none;
+        min-height: 2.5rem;
+    }
+    .delete-icon{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+    .choose_img
+    {
+        text-align: right;
+        border:3px solid white;
+        box-shadow: 2px 2px 2px -1px grey;
+    }
+    .card 
+    {
+        background: #f5f5f5;
+        padding: 0 0 11px 10px !important;
+
+    }
+    .card-content .item 
+    {
+        background: none;
+        border:0px !important;
+
+    }
+    .searchbar 
+    {
+        background: none;
+        border:0px !important;
+        margin: 0px !important;
+        padding: 0px !important;
+
+    }
+    .card-header
+    {
+       padding: 7px 0 0px 0px !important;
+       font-size: 15px !important;
+
+    }
+    ion-item
+    {
+        margin: 0px !important;
+        padding: 0px !important;
+       
+    }
+    .card-content {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+    .text-input {
+    border-bottom: 1px solid #bdbdbd;
+    margin: 0px !important;
+}
+.item-block
+{
+    background: none !important;
+    border: 0px;
+
+}
+.list > .item-block
+{
+    border: 0px !important;
+}
+.fab
+{
+    background-color: #387ef5;
+    color: white;
+
+}
+textarea
+{
+    width: 100% !important;
+    font-size: 14px  !important;
+     color: black !important;
+
+}
+.label
+{
+    font-size: 14px !important;
+    color: black !important;
+
+}
+.geolocation-button
+{
+color: $black-d;
+margin-left: -3px;
+
+&.using-geolocation
+{
+color: $theme-color-1;
+}
+}
+.geolocation-button {
+margin: 0px !important;
+padding: 0px !important;
+height: 1.5em;
+float: right;
+
+}
+
+.delivery_text
+{
+    font-size: 11px !important;
+
+}
+
+}
